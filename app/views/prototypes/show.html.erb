@@ -6,11 +6,11 @@
       </p>
       <%= link_to @prototype.user.name, user_path(@prototype.user), class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
-        <div class="prototype__manage">
         <% if user_signed_in? && current_user.id == @prototype.user_id %>
-          <%= link_to "編集する", edit_prototype_path(@prototype.id), class: :prototype__btn %>
-          <%= link_to "削除する", prototype_path(@prototype.id), method: :delete ,class: :prototype__btn %>
-        </div>
+          <div class="prototype__manage">
+            <%= link_to "編集する", edit_prototype_path(@prototype.id), class: :prototype__btn %>
+            <%= link_to "削除する", prototype_path(@prototype.id), method: :delete ,class: :prototype__btn %>
+          </div>
         <% end %>
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
       <div class="prototype__image">
@@ -33,7 +33,6 @@
       <div class="prototype__comments">
         <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
         <% if user_signed_in? %>
-          <%# <%= form_with model: @comment,local: true do |f|%>
           <%= form_with(model: [@prototype, @comment], local: true) do |f| %>
             <div class="field">
                <%= f.label :content, "コメント" %><br />
@@ -47,12 +46,11 @@
         <% end %>
         <ul class="comments_lists">
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
-            <li class="comments_list">  
             <% @comments.each do |comment| %>
-               <%= comment.content%>
-               <%= link_to comment.user.name, user_path(comment.user), class: :comment_user %>
-               <%# user_path(@coment.user) %>
-            </li>
+               <li class="comments_list">
+                 <%= comment.content%>
+                 <%= link_to comment.user.name, user_path(comment.user), class: :comment_user %>
+                </li>
             <% end %>
         </ul>
       </div>

@@ -4,8 +4,6 @@ class PrototypesController < ApplicationController
 
   def index
     @prototype = Prototype.all
-    # @user = User.find(params[:user_id])
-    # @prototypes = @user.prototype.includes(:prototype)
   end
 
   def new
@@ -14,7 +12,6 @@ class PrototypesController < ApplicationController
 
   def show
     @prototype = Prototype.find(params[:id])
-    # @comment = Comment.find(params[:id])
     @comment = Comment.new
     @comments = @prototype.comments.includes(:user)
   end
@@ -37,6 +34,7 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.find(params[:id])
     @prototype.destroy
     redirect_to root_path()
+
   end
 
   def create

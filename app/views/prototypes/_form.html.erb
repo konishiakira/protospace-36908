@@ -20,14 +20,8 @@
   </div>
 
   <div class="actions">
-    <%# <%= f.submit "保存する", class: :form__btn  %>
-
     <%= form_with(model: prototype, local: true) do |form| %>
-      <%# <%= form.text_field :image, placeholder: "Image Url" %>
       <%= f.submit "保存する", class: :form__btn  %>
-
-
     <% end %>
-
   </div>
 <% end %>
